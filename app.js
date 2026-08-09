@@ -676,7 +676,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return `
       <div class="w-full bg-zinc-950 border border-zinc-800 rounded-2xl p-6 shadow-2xl">
         <div class="text-xs text-zinc-400 mb-4 flex items-center justify-between">
-          <span>📚 Physical Shelf — Click any spine to open details</span>
+          <span>Bookshelf — Click any spine to open details</span>
           <span class="text-zinc-500">${books.length} Books on Shelf</span>
         </div>
 
@@ -700,7 +700,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return `
               <div
                 data-id="${book.id}"
-                class="book-card book-spine group relative flex-shrink-0 cursor-pointer transition-all duration-300 transform hover:-translate-y-6 hover:z-30 select-none"
+                class="book-card book-spine group relative flex-shrink-0 cursor-pointer rounded-none transition-all duration-300 transform hover:-translate-y-4 hover:z-30 select-none"
                 style="width: ${spineWidth}px; height: ${spineHeight}px;"
               >
                 <div 
