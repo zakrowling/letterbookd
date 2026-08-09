@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Letterbookd</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="bg-black text-zinc-100 min-h-screen">
+  <div class="max-w-7xl mx-auto p-4 sm:p-8 space-y-6">
+    
+    <!-- Top Bar Header -->
+    <header class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div>
+        <h1 class="text-2xl font-bold tracking-tight text-white flex items-center gap-2">
+         Letterbookd
+        </h1>
+        <p id="book-count" class="text-zinc-400 text-xs mt-1">Showing 0 entries</p>
+      </div>
+
+      <!-- View Toggle -->
+      <div class="flex items-center gap-1 bg-zinc-900 p-1 rounded-lg border border-zinc-800 shrink-0">
+        <button id="view-grid-btn" class="view-btn px-3 py-1.5 text-xs font-medium rounded-md transition-colors bg-zinc-700 text-white" data-view="grid">
+          Grid
+        </button>
+        <button id="view-list-btn" class="view-btn px-3 py-1.5 text-xs font-medium rounded-md transition-colors text-zinc-400 hover:text-white" data-view="list">
+          2D List
+        </button>
+        <button id="view-3d-btn" class="view-btn px-3 py-1.5 text-xs font-medium rounded-md transition-colors text-zinc-400 hover:text-white" data-view="3d">
+          3D View
+        </button>
+      </div>
+    </header>
+
+    <!-- Unified Filter & Sort Controls Bar (Single Line Layout) -->
+    <section class="flex flex-wrap gap-4 p-4 bg-zinc-950 rounded-xl border border-zinc-800 text-sm">
+      
+      <!-- Search Bar -->
+      <div class="flex flex-col min-w-[300px]">
+        <label for="search-input" class="text-[12px] font-semibold uppercase tracking-wider text-zinc-400">Rating</label>
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Filter by title or author..."
+          class="w-full bg-zinc-900 text-zinc-200 border border-zinc-800 px-3 py-1.5 rounded-md focus:outline-none focus:border-zinc-600 text-xs sm:text-sm"
+        />
+      </div>
+
+      <!-- Filters Group -->
+      <div class="flex flex-col gap-1">
+        <label for="ratingStatus" class="text-[12px] font-semibold uppercase tracking-wider text-zinc-400">Rating</label>
+        <select id="filter-status" class="w-full bg-zinc-900 text-zinc-200 border border-zinc-800 px-3 py-1.5 rounded-md focus:outline-none focus:border-zinc-600 text-xs sm:text-sm">
+          <option value="all">All Statuses</option>
+          <option value="read">Read</option>
+          <option value="reading">Currently Reading</option>
+          <option value="want-to-read">Want to Read</option>
+          <option value="dnf">Did Not Finish</option>
+        </select>
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <label for="filter-rating" class="text-[12px] font-semibold uppercase tracking-wider text-zinc-400">Rating</label>
+        <select id="filter-rating" class="w-full bg-zinc-900 text-zinc-200 border border-zinc-800 px-3 py-1.5 rounded-md focus:outline-none focus:border-zinc-600 text-xs sm:text-sm">
+          <option value="all" selected>All Ratings</option>
+          <option value="5">5 Stars</option>
+          <option value="4">4 Stars</option>
+          <option value="3">3 Stars</option>
+          <option value="2">2 Stars</option>
+          <option value="1">1 Star</option>
+          <option value="0">Unrated</option>
+        </select>
+      </div>
+      
+      <div class="flex flex-col gap-1">
+        <label for="filter-year-read" class="text-[12px] font-semibold uppercase tracking-wider text-zinc-400">Rating</label>
+        <select
+          id="filter-year-read"
+          class="w-full bg-zinc-900 text-zinc-200 border border-zinc-800 px-3 py-1.5 rounded-md focus:outline-none focus:border-zinc-600 text-xs sm:text-sm"
+        >
+          <option value="all" selected>All Years</option>
+          <option value="2026" selecte>2026</option>
+          <option value="2025">2025</option>
+          <option value="2024">2024</option>
+          <option value="2023">2023</option>
+          <option value="2022">2022</option>
+          <option value="2021">2021</option>
+          <option value="2020">2020</option>
+          <option value="2019">2019</option>
+          <option value="2018">2018</option>
+          <option value="2017">2017</option>
+          <option value="2016">2016</option>
+          <option value="2015">2015</option>
+          <option value="2014">2014</option>
+          <option value="2013">2013</option>
+          <option value="2012">2012</option>
+          <option value="2011">2011</option>
+          <option value="2010">2010</option>
+          <option value="2009">2009</option>
+          <option value="2008">2008</option>
+          <option value="2007">2007</option>
+          <option value="2006">2006</option>
+          <option value="2005">2005</option>
+          <option value="2004">2004</option>
+          <option value="2003">2003</option>
+          <option value="2002">2002</option>
+          <option value="2001">2001</option>
+          <option value="2000">2000</option>
+        </select>
+      </div>
+
+      <!-- Sort Group (with Shuffle included) -->
+      <div class="flex flex-col gap-1">
+        <label for="sort-select" class="text-[12px] font-semibold uppercase tracking-wider text-zinc-400">Sort By</label>
+        <select
+            id="sort-select"
+            class="w-full bg-zinc-900 text-zinc-200 border border-zinc-800 px-3 py-1.5 rounded-md focus:outline-none focus:border-zinc-600 text-xs sm:text-sm"
+          >
+          <option value="rating-desc">My Rating: Highest first</option>
+          <option value="rating-asc">My Rating: Lowest first</option>
+          <option value="title-asc">Alphabetical (A-Z)</option>
+          <option value="title-desc">Reverse Alphabetical (Z-A)</option>
+          <option value="pages-desc">Page Count: Longest first</option>
+          <option value="pages-asc">Page Count: Shortest first</option>
+          <option value="release-desc">Release Date: Newest first</option>
+          <option value="release-asc">Release Date: Oldest first</option>
+          <option value="popularity-desc">Most Popular (Google Books)</option>
+          <option value="shuffle">🎲 Shuffle / Random</option>
+        </select>
+      </div>
+
+    </section>
+
+    <!-- Main Views Container -->
+    <main id="view-container"></main>
+
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

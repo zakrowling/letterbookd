@@ -1,0 +1,243 @@
+:root {
+  --bg-color: #121216;
+  --card-bg: #1a1a22;
+  --panel-bg: #1e1e24;
+  --input-bg: #2b2b36;
+  --border-color: #3f3f4e;
+  --text-main: #ffffff;
+  --text-muted: #a0a0a0;
+  --accent-purple: #a855f7;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  margin: 0;
+  padding: 24px;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+h1 {
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+}
+
+/* Unified Control Bar */
+.controls-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  background: var(--panel-bg);
+  border-radius: 8px;
+  margin-bottom: 28px;
+}
+
+.search-group input {
+  min-width: 240px;
+}
+
+.control-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.control-group label {
+  font-weight: 600;
+  color: var(--text-main);
+  white-space: nowrap;
+}
+
+.controls-bar input,
+.controls-bar select {
+  background: var(--input-bg);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 0.85rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.controls-bar input:focus,
+.controls-bar select:focus {
+  border-color: var(--accent-purple);
+}
+
+/* Book Grid */
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 24px;
+}
+
+.book-card {
+  background: var(--card-bg);
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+.book-card:hover {
+  transform: translateY(-4px);
+}
+
+.book-cover-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  background: #222;
+}
+
+.book-cover-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Star Rating Badge on Cover */
+.rating-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(18, 18, 22, 0.85);
+  border: 1px solid #eab308;
+  color: #eab308;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  backdrop-filter: blur(4px);
+}
+
+/* Shelf Badge on Cover */
+.shelf-badge {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  background: rgba(18, 18, 22, 0.85);
+  border: 1px solid #10b981;
+  color: #10b981;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  text-transform: capitalize;
+  backdrop-filter: blur(4px);
+}
+
+/* Fallback Cover (Lady Sings the Blues style) */
+.fallback-cover {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #281a2f 0%, #17111d 100%);
+  border: 2px solid #7e22ce;
+  box-sizing: border-box;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.fallback-title {
+  color: #f3e8ff;
+  font-size: 1.05rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.fallback-author {
+  color: #d8b4fe;
+  font-size: 0.8rem;
+  font-style: italic;
+}
+
+/* Card Details Footer */
+.book-info {
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+
+.book-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #f3f4f6;
+  margin: 0 0 4px 0;
+  line-height: 1.25;
+}
+
+.book-author {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin: 0 0 12px 0;
+}
+
+.book-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-color);
+  padding-top: 10px;
+}
+
+/* Modal Window */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.modal-content {
+  background: var(--panel-bg);
+  border: 1px solid var(--border-color);
+  padding: 24px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+}
+
+.close-button {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  font-size: 1.5rem;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.close-button:hover {
+  color: var(--text-main);
+}
